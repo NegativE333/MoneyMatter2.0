@@ -1,5 +1,3 @@
-
-import getExp from "@/actions/getExp";
 import ExpenseItem from "./ExpenseItem";
 import { Exp } from "@/types";
 
