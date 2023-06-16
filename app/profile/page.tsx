@@ -31,6 +31,13 @@ const Profile = async () => {
     .select('avail')
     .eq('id', user?.id)
 
+  const{
+    data: expData,
+    error: expError
+  } = await supabaseClient.rpc('exp_total', { user_id: user?.id});
+
+  console.log(expData);
+
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
@@ -68,10 +75,10 @@ const Profile = async () => {
         />
         <Card
           title="Money Spent"
-          subtitle="This month"
+          subtitle=""
           subtitle2="All time"
-          data="1000"
-          data2="70000"
+          data=""
+          data2={expData}
         />
         <Card
           title="Reminders"
