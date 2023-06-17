@@ -61,13 +61,10 @@ const Card: React.FC<CardProps> = ({
                     )}
                 </div>
             ): (
-                <div className="flex flex-col items-center justify-center gap-2 h-full">
+                <div className="flex flex-col items-center justify-between h-[85%]">
                     <h1 className="font-semibold text-xl mt-4">
                         {title}
                     </h1>
-                    <p className="font-bold text-lg">
-                        {subtitle} : {data} ₹
-                    </p>
                     <p className="font-bold text-lg mb-4">
                         {subtitle2} : {data2} ₹
                     </p>
