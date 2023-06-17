@@ -7,49 +7,39 @@ import { useSessionContext } from '@supabase/auth-helpers-react';
 import { useUser } from "@/hooks/useUser";
 import useAuthModal from "@/hooks/useAuthModal";
 import useAddMoneyModal from "@/hooks/useAddMoneyModal";
-// import getMoneyByUserId from "@/actions/getMoneyByUserId";
+
+export const revalidate = 0;
 
 const Profile = async () => {
   const router = useRouter();
   const {
     supabaseClient
   } = useSessionContext();
-  // const getMoney = getMoneyByUserId();
   const { user } = useUser();
   const authModal = useAuthModal();
   const addMoney = useAddMoneyModal();
 
-  if(!user){
-    authModal.onOpen();
-  }
+  // if(!user){
+  //   authModal.onOpen();
+  // }
 
   const{
     data,
     error
-  } = await supabaseClient 
-    .from('users')
-    .select('avail')
-    .eq('id', user?.id)
+  } = await supabaseClient.rpc('avail_money', { id: user?.id});
 
   const{
     data: expData,
     error: expError
   } = await supabaseClient.rpc('exp_total', { user_id: user?.id});
 
-  console.log(expData);
-
-
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
-    router.refresh();
+    router.push('/');
     if (error) {
       console.log(error);
     }
   };
-
-  // const handleAdd = () => {
-  //   addMoney.onOpen();
-  // }
 
   const handleRem = () => {
     router.push("/reminders");
@@ -66,16 +56,14 @@ const Profile = async () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 p-6 gap-8">
         <Card
           title="Available Money"
-          // @ts-ignore: Object is possibly 'null'
-          data={data[0].avail}
+          data={data}
           subtitle=""
           subtitle2="Add Money"
-          // onClick={handleAdd}
           isButton
         />
         <Card
           title="Money Spent"
-          subtitle=""
+          subtitle=" "
           subtitle2="All time"
           data=""
           data2={expData}

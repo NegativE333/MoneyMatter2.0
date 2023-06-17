@@ -83,9 +83,16 @@ const Header: React.FC<HeaderProps> = ({ children, className, hide, loc }) => {
                 </Link>
               </button>
               <button className="rounded-full p-2 bg-white flex items-center justify-center hover:opacity-75 transition">
-                <Link href="/profile">
-                  <FaUserCircle className="text-black" size={20} />
-                </Link>
+                {user ? (
+                  <Link href='/profile'>
+                    <FaUserCircle className="text-black" size={20} />
+                  </Link>
+                ) : (
+                  <div onClick={authModal.onOpen}>
+                    <FaUserCircle className="text-black" size={20} />
+                  </div>
+                )}
+                
               </button>
             </div>
           </>
