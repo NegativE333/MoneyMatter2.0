@@ -83,12 +83,15 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({
             <p className="font-medium truncate">
                 {name}
             </p>
-            <div className="absolute right-20 font-bold">
-                {expense} ₹
+            <div className='w-[30%] flex justify-center items-center'>
+                <div className="absolute right-16 font-bold">
+                    {expense} ₹
+                </div>
+                <div className="absolute right-1 font-bold">
+                    {date} {monthL}
+                </div>    
             </div>
-            <div className="absolute right-2 font-bold">
-                {date} {monthL}
-            </div>
+            
         </button>
     )
 }

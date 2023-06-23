@@ -34,11 +34,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
               <AvailableMoney />
             </div>
   
-            <div className="h-[20%]">
-              <MoneyDetails />
-            </div>
-  
-            <div className="h-[25%]">
+            <div className="h-[45%]">
               <MiniReminders />
             </div>
             <div className="h-[35%]">

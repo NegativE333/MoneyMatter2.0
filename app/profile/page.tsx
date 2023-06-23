@@ -19,10 +19,6 @@ const Profile = async () => {
   const authModal = useAuthModal();
   const addMoney = useAddMoneyModal();
 
-  // if(!user){
-  //   authModal.onOpen();
-  // }
-
   const{
     data,
     error
