@@ -12,7 +12,7 @@ const AvailableMoney = async () => {
             <>
             </>
           ): (
-            <>{getMoney[0].avail} ₹</>
+            <> {getMoney[0].avail} ₹</>
           )} 
       </p>
       <SidebarAddButton 

@@ -18,6 +18,7 @@ const PageContent: React.FC<PageContentProps> = ({
                 {exps.map((exp) => (
                     <ExpenseItem 
                         key={exp.id}
+                        id={exp.id}
                         name={exp.title}
                         expense={exp.amount}
                         created_at={exp.created_at}

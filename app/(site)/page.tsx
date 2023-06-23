@@ -1,6 +1,6 @@
 
 
-import getExpByUserId from "@/actions/getExpByUserId";
+import get30ExpByUserId from "@/actions/getExpByUserId";
 import Header from "@/components/Header";
 import PageContent from "@/components/PageContent";
 
@@ -8,7 +8,7 @@ export const revalidate = 0;
 
 export default async function Home() {
   
-  const exps = await getExpByUserId();
+  const exps = await get30ExpByUserId();
   let flag = false;
   if(exps.length === 0){
     flag = true;

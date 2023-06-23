@@ -1,21 +1,27 @@
 'use client';
 
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineShoppingCart, AiOutlineScissor, AiOutlineMobile, AiOutlineCar, AiOutlineHome } from 'react-icons/ai';
 import { MdOutlineDinnerDining } from 'react-icons/md';
+import { RxScissors } from 'react-icons/rx';
 import { FiCoffee } from 'react-icons/fi';
 
+import useDeleteExpModal from '@/hooks/useDeleteExpModal';
+import DeleteExpModal from './DeleteExpModal';
+
 interface ExpenseItemProps{
+    id: string;
     name: string;
     expense: string;
     created_at: string;
 }
 
 const ExpenseItem: React.FC<ExpenseItemProps> = ({
+    id,
     name,
     expense,
     created_at
 }) => {
-
+    const deleteExpModal = useDeleteExpModal();
     const date = created_at.slice(8, 10);
     const month = created_at.slice(5, 7);
     let Icon = FiCoffee;
@@ -63,11 +69,23 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({
             break;
     }
 
-    if(name === 'chai' || name==='Chai' || name==='Tea' || name==='tea'){
+    if(name === 'chai' || name==='Chai' || name==='Tea' || name==='tea' || name === 'coffee' || name === 'Coffee'){
         Icon = FiCoffee
     }
     else if(name === 'dinner' || name==='Dinner' || name==='lunch' || name==='Lunch' || name==='J1' || name==='j1'){
         Icon = MdOutlineDinnerDining;
+    }
+    else if(name === 'cutting' || name==="Cutting" || name==='barber'){
+        Icon = AiOutlineScissor;
+    }
+    else if(name === 'recharge' || name === 'Mobile Recharge' || name==='mobile recharge' || name === 'Recharge' || name === 'top up' || name === 'Top Up' || name === 'Data pack' || name === 'data pack' || name === 'top up'){
+        Icon = AiOutlineMobile
+    }
+    else if(name === 'car' || name === 'cab' || name === 'taxi' || name === 'Cab'){
+        Icon = AiOutlineCar
+    }
+    else if(name === 'home rent' || name === 'Rent' || name === 'rent' || name === 'Home rent'){
+        Icon = AiOutlineHome
     }
     else{
         Icon = AiOutlineShoppingCart
@@ -75,10 +93,11 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({
 
     return(
         <button
+            onClick={() => deleteExpModal.onOpen(id)}
             className="relative group flex items-center rounded-md overflow-hidden gap-x-4 bg-neutral-100/10 hover:bg-neutral-100/20 transition pr-4"
         >
             <div className="relative min-h-[50px] lg:min-w-[64px] min-w-[48px] flex items-center justify-center bg-neutral-800/80">
-                <Icon size={36}/>
+                <Icon size={36} className='flex hover:hidden'/>
             </div>
             <p className="font-medium truncate">
                 {name}
@@ -91,7 +110,6 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({
                     {date} {monthL}
                 </div>    
             </div>
-            
         </button>
     )
 }

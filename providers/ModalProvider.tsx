@@ -5,6 +5,7 @@ import AuthModal from "@/components/AuthModal";
 import AddReminderModal from "@/components/AddReminderModal";
 import AddMoneyModal from "@/components/AddMoneyModal";
 import { useEffect, useState } from "react";
+import DeleteExpModal from "@/components/DeleteExpModal";
 
 const ModalProvider = () => {
     const [isMounted, setIsMounted] = useState(false);
@@ -23,6 +24,7 @@ const ModalProvider = () => {
             <AuthModal />
             <AddExpModal />
             <AddReminderModal />
+            <DeleteExpModal />
         </>
     )
 }
